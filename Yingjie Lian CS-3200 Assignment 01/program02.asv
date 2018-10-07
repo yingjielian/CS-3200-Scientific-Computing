@@ -1,0 +1,20 @@
+function program02;
+
+degree = 37;
+x = linspace(0, 1, degree);
+
+y = hubbard02(x); % t = 0.25
+xint = linspace(0, 1, 1001);
+yint = polyinterp(x, y, xint);
+y_r = hubbard02(xint);
+
+error = y_r' - yint;
+plot(xint, y_r, '-', xint, error, '-', xint, yint, '-');
+xlim([0,1]); % Zoom in the image by x-axis
+ylim([-0.2,1.2]); % Zoom in the image by y-axis
+
+title('Polynomials of degree 36')
+xlabel('Between the range[0,1]') % x-axis label
+legend('Interpolation','Error','Hubbard Function')
+
+

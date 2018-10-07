@@ -1,0 +1,18 @@
+N = [17,33,65,129,257,513]; 
+for i = 1:size(N,2)
+    [w_i, x_i] = trapezoid(0,2*pi,N(i))
+    trapezoidValue(i) = dot(w_i, (1+sin(x_i).*cos((2*x_i)/3).*sin(4*x_i)))
+end
+
+for i = 1:size(N,2)
+    [w_i, x_i] = midpoint(0,2*pi,N(i))
+    midpointValue(i) = dot(w_i, (1+sin(x_i).*cos((2*x_i)/3).*sin(4*x_i)))
+end
+
+for i = 1:size(N,2)
+    [w_i, x_i] = simpsonFormula(0,2*pi,N(i))
+    simpsonFormulaValue(i) = dot(w_i, (1+sin(x_i).*cos((2*x_i)/3).*sin(4*x_i)))
+end
+
+plot(N,trapezoidValue,'-', N, midpointValue,'-', N,simpsonFormulaValue,'-');
+title('')
